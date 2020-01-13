@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="control_visitas" Class="VisitasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-GKN3USB;Initial Catalog=control_visitas;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="control_visitasConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Departamento" Member="Departamento">
+    <Type Name="Departamento">
+      <Column Name="idDepartamento" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreDep" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Departamento_Empleado" Member="Empleado" ThisKey="idDepartamento" OtherKey="idDepartamento" Type="Empleado" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Visitante" Member="Visitante">
+    <Type Name="Visitante">
+      <Column Name="idVisita" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreVis" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="aPaternoVis" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="aMaternoVis" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="EntradaVis" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SalidaVis" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="idGafete" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idEmpleado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Empleado_Visitante" Member="Empleado" ThisKey="idEmpleado" OtherKey="idEmpleado" Type="Empleado" IsForeignKey="true" />
+      <Association Name="Gafete_Visitante" Member="Gafete" ThisKey="idGafete" OtherKey="idGafete" Type="Gafete" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Empleado" Member="Empleado">
+    <Type Name="Empleado">
+      <Column Name="idEmpleado" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreEmp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="aPaternoEmp" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="idDepartamento" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Empleado_Visitante" Member="Visitante" ThisKey="idEmpleado" OtherKey="idEmpleado" Type="Visitante" />
+      <Association Name="Departamento_Empleado" Member="Departamento" ThisKey="idDepartamento" OtherKey="idDepartamento" Type="Departamento" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gafete" Member="Gafete">
+    <Type Name="Gafete">
+      <Column Name="idGafete" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreGaf" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="libre" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Gafete_Visitante" Member="Visitante" ThisKey="idGafete" OtherKey="idGafete" Type="Visitante" />
+    </Type>
+  </Table>
+</Database>

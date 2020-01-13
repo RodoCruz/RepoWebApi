@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="control_visitasModelStoreContainer" CdmEntityContainer="BDVisitaEntities1">
+    <EntitySetMapping Name="Departamento">
+      <EntityTypeMapping TypeName="control_visitasModel.Departamento">
+        <MappingFragment StoreEntitySet="Departamento">
+          <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+          <ScalarProperty Name="nombreDep" ColumnName="nombreDep" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="control_visitasModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+          <ScalarProperty Name="nombreEmp" ColumnName="nombreEmp" />
+          <ScalarProperty Name="aPaternoEmp" ColumnName="aPaternoEmp" />
+          <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gafete">
+      <EntityTypeMapping TypeName="control_visitasModel.Gafete">
+        <MappingFragment StoreEntitySet="Gafete">
+          <ScalarProperty Name="idGafete" ColumnName="idGafete" />
+          <ScalarProperty Name="nombreGaf" ColumnName="nombreGaf" />
+          <ScalarProperty Name="libre" ColumnName="libre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visitante">
+      <EntityTypeMapping TypeName="control_visitasModel.Visitante">
+        <MappingFragment StoreEntitySet="Visitante">
+          <ScalarProperty Name="idVisita" ColumnName="idVisita" />
+          <ScalarProperty Name="nombreVis" ColumnName="nombreVis" />
+          <ScalarProperty Name="aPaternoVis" ColumnName="aPaternoVis" />
+          <ScalarProperty Name="aMaternoVis" ColumnName="aMaternoVis" />
+          <ScalarProperty Name="EntradaVis" ColumnName="EntradaVis" />
+          <ScalarProperty Name="SalidaVis" ColumnName="SalidaVis" />
+          <ScalarProperty Name="idGafete" ColumnName="idGafete" />
+          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

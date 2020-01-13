@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="control_visitasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="idDepartamento" />
+    </Key>
+    <Property Name="idDepartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreDep" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreEmp" Type="varchar" MaxLength="30" />
+    <Property Name="aPaternoEmp" Type="varchar" MaxLength="30" />
+    <Property Name="idDepartamento" Type="int" />
+  </EntityType>
+  <EntityType Name="Gafete">
+    <Key>
+      <PropertyRef Name="idGafete" />
+    </Key>
+    <Property Name="idGafete" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreGaf" Type="varchar" MaxLength="10" />
+    <Property Name="libre" Type="bit" />
+  </EntityType>
+  <EntityType Name="Visitante">
+    <Key>
+      <PropertyRef Name="idVisita" />
+    </Key>
+    <Property Name="idVisita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreVis" Type="varchar" MaxLength="30" />
+    <Property Name="aPaternoVis" Type="varchar" MaxLength="30" />
+    <Property Name="aMaternoVis" Type="varchar" MaxLength="30" />
+    <Property Name="EntradaVis" Type="datetime" />
+    <Property Name="SalidaVis" Type="datetime" />
+    <Property Name="idGafete" Type="int" />
+    <Property Name="idEmpleado" Type="int" />
+  </EntityType>
+  <Association Name="FK__Empleado__idDepa__4D94879B">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="0..1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="idDepartamento" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="idDepartamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visitante__idEmp__03F0984C">
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+    <End Role="Visitante" Type="Self.Visitante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idEmpleado" />
+      </Principal>
+      <Dependent Role="Visitante">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Visitante__idGaf__02FC7413">
+    <End Role="Gafete" Type="Self.Gafete" Multiplicity="0..1" />
+    <End Role="Visitante" Type="Self.Visitante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gafete">
+        <PropertyRef Name="idGafete" />
+      </Principal>
+      <Dependent Role="Visitante">
+        <PropertyRef Name="idGafete" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="control_visitasModelStoreContainer">
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gafete" EntityType="Self.Gafete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visitante" EntityType="Self.Visitante" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Empleado__idDepa__4D94879B" Association="Self.FK__Empleado__idDepa__4D94879B">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visitante__idEmp__03F0984C" Association="Self.FK__Visitante__idEmp__03F0984C">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="Visitante" EntitySet="Visitante" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Visitante__idGaf__02FC7413" Association="Self.FK__Visitante__idGaf__02FC7413">
+      <End Role="Gafete" EntitySet="Gafete" />
+      <End Role="Visitante" EntitySet="Visitante" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
